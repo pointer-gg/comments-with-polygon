@@ -27,13 +27,13 @@ const useCommentsContract = () => {
     signerOrProvider: signer.data || provider,
   });
 
-  const getComments = (topic: string): Comment[] => {
+  const getComments = async (topic: string): Promise<Comment[]> => {
     return contract.getComments(topic).then((comments) => {
       return comments.map((c) => ({ ...c }));
     });
   };
 
-  const addComment = async (topic: string, message: string) => {
+  const addComment = async (topic: string, message: string): Promise<void> => {
     const tx = await contract.addComment(topic, message);
     await tx.wait();
   };
@@ -43,7 +43,6 @@ const useCommentsContract = () => {
     subscriber: Subscriber
   ): Unsubscriber => {
     contract.on(eventType, (data) => {
-      console.log(data);
       subscriber(data);
     });
     return () => {
