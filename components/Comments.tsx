@@ -3,7 +3,6 @@ import { Box, Spinner, Stack, Center } from "@chakra-ui/react";
 import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
 import useComments from "../hooks/useComments";
-import { useProvider } from "wagmi";
 import useEvents from "../hooks/useEvents";
 
 interface CommentsProps {
