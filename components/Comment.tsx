@@ -3,10 +3,10 @@ import { Text, Heading, HStack, Stack } from "@chakra-ui/react";
 import TimeAgo from "react-timeago";
 import Avatar from "./Avatar";
 import Username from "./Username";
-import * as api from "../api";
+import { Comment } from "../hooks/useCommentsContract";
 
 interface CommentProps {
-  comment: api.Comment;
+  comment: Comment;
 }
 
 const Comment: React.FunctionComponent<CommentProps> = ({ comment }: any) => {
