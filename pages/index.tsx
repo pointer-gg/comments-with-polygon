@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider, Box } from "@chakra-ui/react";
+import { Toaster } from "react-hot-toast";
 import Comments from "../components/Comments";
 import theme from "../theme";
 import {
@@ -13,22 +14,18 @@ import {
 import { providers } from "ethers";
 
 // Chains for connectors to support
-const chains = [...defaultChains, chain.hardhat];
+const chains = [chain.polygonTestnetMumbai, chain.hardhat];
 
 const provider = ({ chainId, connector }) => {
   // if (!chainId || chainId === 1337) {
   //   return providers.getDefaultProvider("http://localhost:8545", { infura: "642809eccf5340d39458fa22ad194fdf"});
   // }
 
-  console.log(connector?.chains);
-
   const chain = connector?.chains.find((c) => c.id === chainId);
 
-  console.log(chain?.rpcUrls?.[0]);
-
   return providers.getDefaultProvider(
-    chain?.rpcUrls?.[0] || "http://localhost:8545",
-    { infura: "642809eccf5340d39458fa22ad194fdf" }
+    chain?.rpcUrls?.[0] || "http://localhost:8545"
+    // { infura: "642809eccf5340d39458fa22ad194fdf" }
   );
 
   // return new providers.InfuraProvider(
@@ -48,13 +45,18 @@ const connectors = () => {
   return [
     new InjectedConnector({
       chains,
-      options: { shimDisconnect: true },
     }),
   ];
 };
 
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App: NextPage = () => {
   return (
@@ -63,6 +65,7 @@ const App: NextPage = () => {
         <QueryClientProvider client={queryClient}>
           <Box p={8} maxW="600px" minW="320px" m="0 auto">
             <Comments topic="cheese" />
+            <Toaster position="bottom-right" />
           </Box>
         </QueryClientProvider>
       </ChakraProvider>

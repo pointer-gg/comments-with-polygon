@@ -1,6 +1,5 @@
 import { useMutation } from "react-query";
-import { useSigner } from "wagmi";
-import useContract from "./useContract";
+import useCommentsContract from "./useCommentsContract";
 
 interface UseAddCommentPayload {
   topic: string;
@@ -8,7 +7,7 @@ interface UseAddCommentPayload {
 }
 
 const useAddComment = () => {
-  const contract = useContract();
+  const contract = useCommentsContract();
 
   return useMutation(async ({ topic, message }: UseAddCommentPayload) => {
     await contract.addComment(topic, message);

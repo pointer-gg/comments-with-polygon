@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import CommentEditor from "./CommentEditor";
 import useComments from "../hooks/useComments";
 import { useProvider } from "wagmi";
+import useEvents from "../hooks/useEvents";
 
 interface CommentsProps {
   topic: string;
@@ -11,6 +12,8 @@ interface CommentsProps {
 
 const Comments: React.FunctionComponent<CommentsProps> = ({ topic }) => {
   const query = useComments({ topic });
+
+  useEvents({ topic });
 
   return (
     <Box>

@@ -1,9 +1,23 @@
 import * as wagmi from "wagmi";
 import CommentsContract from "../artifacts/contracts/Comments.sol/Comments.json";
 import { useProvider, useSigner } from "wagmi";
-import * as api from "../api";
 
-const useContract = () => {
+export interface Comment {
+  id: string;
+  topic: string;
+  message: string;
+  creator_address: string;
+  created_at: number;
+}
+
+export enum EventType {
+  CommentAdded = "CommentAdded",
+}
+
+export type Subscriber = (data: any) => void;
+export type Unsubscriber = () => void;
+
+const useCommentsContract = () => {
   const [signer] = useSigner();
   const provider = useProvider();
 
@@ -13,7 +27,7 @@ const useContract = () => {
     signerOrProvider: signer.data || provider,
   });
 
-  const getComments = (topic: string): api.Comment[] => {
+  const getComments = (topic: string): Comment[] => {
     return contract.getComments(topic).then((comments) => {
       return comments.map((c) => ({ ...c }));
     });
@@ -24,12 +38,26 @@ const useContract = () => {
     await tx.wait();
   };
 
+  const subscribe = (
+    eventType: EventType,
+    subscriber: Subscriber
+  ): Unsubscriber => {
+    contract.on(eventType, (data) => {
+      console.log(data);
+      subscriber(data);
+    });
+    return () => {
+      contract.off(eventType);
+    };
+  };
+
   return {
     contract,
     chainId: contract.provider.network?.chainId,
     getComments,
     addComment,
+    subscribe,
   };
 };
 
-export default useContract;
+export default useCommentsContract;
