@@ -10,7 +10,7 @@ interface CommentEditorProps {
 }
 
 const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
-  topic
+  topic,
 }) => {
   const [message, setMessage] = React.useState("");
   const mutation = useAddComment();
@@ -41,7 +41,7 @@ const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
           mutation
             .mutateAsync({
               message,
-              topic
+              topic,
             })
             .then(() => {
               setMessage("");
