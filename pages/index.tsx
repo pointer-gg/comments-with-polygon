@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import theme from "../theme";
 import { Provider as WagmiProvider } from "wagmi";
 import { providers } from "ethers";
+import Comments from "../components/Comments";
 
 // Provide a fallback network while chainId is not yet defined
 const provider = ({ chainId, connector }) => {
@@ -30,7 +31,7 @@ const App: NextPage = () => {
       <ChakraProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <Box p={8} maxW="600px" minW="320px" m="0 auto">
-            <Heading>Oops, no comments yet!</Heading>
+            <Comments topic="my-blog-post" />
             <Toaster position="bottom-right" />
           </Box>
         </QueryClientProvider>
