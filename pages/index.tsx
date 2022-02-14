@@ -4,11 +4,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider, Box, Heading } from "@chakra-ui/react";
 import { Toaster } from "react-hot-toast";
 import theme from "../theme";
-import { Provider as WagmiProvider, InjectedConnector, chain } from "wagmi";
+import { Provider as WagmiProvider } from "wagmi";
 import { providers } from "ethers";
-
-// Chains for connectors to support
-const chains = [chain.polygonTestnetMumbai, chain.hardhat];
 
 // Provide a fallback network while chainId is not yet defined
 const provider = ({ chainId, connector }) => {
@@ -18,16 +15,7 @@ const provider = ({ chainId, connector }) => {
   );
 };
 
-// Enables sign-in with Metamask
-const connectors = () => {
-  return [
-    new InjectedConnector({
-      chains,
-    }),
-  ];
-};
-
-// Create a client
+// Create a react-query client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -38,7 +26,7 @@ const queryClient = new QueryClient({
 
 const App: NextPage = () => {
   return (
-    <WagmiProvider autoConnect provider={provider} connectors={connectors}>
+    <WagmiProvider autoConnect provider={provider}>
       <ChakraProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <Box p={8} maxW="600px" minW="320px" m="0 auto">
