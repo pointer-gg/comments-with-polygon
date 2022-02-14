@@ -1,5 +1,6 @@
 import * as wagmi from "wagmi";
 import { useProvider, useSigner } from "wagmi";
+import type { BigNumber } from "ethers";
 // Import our contract ABI
 import CommentsContract from "../artifacts/contracts/Comments.sol/Comments.json";
 
@@ -8,7 +9,7 @@ export interface Comment {
   topic: string;
   message: string;
   creator_address: string;
-  created_at: number;
+  created_at: BigNumber;
 }
 
 export enum EventType {
