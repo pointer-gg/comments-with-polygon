@@ -9,19 +9,28 @@ interface UseEventsQuery {
 // Listen to events and refresh data
 const useEvents = ({ topic }: UseEventsQuery) => {
   const queryClient = useQueryClient();
-  const contract = useCommentsContract();
+  const commentsContract = useCommentsContract();
 
   useEffect(() => {
-    return contract.subscribe(EventType.CommentAdded, (comment) => {
+    const handler = (comment) => {
       if (comment.topic !== topic) {
         return;
       }
+      // Invalidates the query whose query key matches the passed array.
+      // This will cause the useComments hook to re-render the Comments
+      // component with fresh data.
       queryClient.invalidateQueries([
         "comments",
-        { topic: comment.topic, chainId: contract.chainId },
+        { topic: comment.topic, chainId: commentsContract.chainId },
       ]);
-    });
-  }, [queryClient, contract.chainId, topic]);
+    };
+
+    commentsContract.contract.on(EventType.CommentAdded, handler);
+
+    return () => {
+      commentsContract.contract.off(EventType.CommentAdded, handler);
+    };
+  }, [queryClient, commentsContract.chainId, topic]);
 };
 
 export default useEvents;

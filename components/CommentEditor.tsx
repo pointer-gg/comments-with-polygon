@@ -1,8 +1,8 @@
 import { HStack, Stack, Textarea } from "@chakra-ui/react";
 import * as React from "react";
-import { useAccount } from "wagmi";
-import Avatar from "./Avatar";
+import Avatar from "@davatar/react";
 import AuthButton from "./AuthButton";
+import { useAccount } from "wagmi";
 import useAddComment from "../hooks/useAddComment";
 
 interface CommentEditorProps {
@@ -19,7 +19,13 @@ const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
   return (
     <Stack spacing={3}>
       <HStack spacing={3} alignItems="start">
-        <Avatar address={accountQuery.data?.address} />
+        <Avatar
+          size={48}
+          address={
+            accountQuery.data?.address ||
+            "0x0000000000000000000000000000000000000000"
+          }
+        />
         <Textarea
           value={message}
           onChange={(e) => {
