@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import * as React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, QueryCache } from "react-query";
 import { ChakraProvider, Box, Heading } from "@chakra-ui/react";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import theme from "../theme";
 import { Provider as WagmiProvider } from "wagmi";
 import { providers } from "ethers";
@@ -23,6 +23,13 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
+  queryCache: new QueryCache({
+    onError: () => {
+      toast.error(
+        "Network Error: Ensure Metamask is connected to the same network that your contract is deployed to."
+      );
+    },
+  }),
 });
 
 const App: NextPage = () => {
