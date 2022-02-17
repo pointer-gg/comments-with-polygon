@@ -8,13 +8,8 @@ import { Provider as WagmiProvider } from "wagmi";
 import { providers } from "ethers";
 import Comments from "../components/Comments";
 
-// Provide a fallback network while chainId is not yet defined
-const provider = ({ chainId, connector }) => {
-  const selectedChain = connector?.chains.find((c) => c.id === chainId);
-  return providers.getDefaultProvider(
-    selectedChain?.rpcUrls?.[0] || "http://localhost:8545"
-  );
-};
+// Provider that will be used when no wallet is connected (aka no signer)
+const provider = providers.getDefaultProvider("http://localhost:8545");
 
 // Create a react-query client
 const queryClient = new QueryClient({
