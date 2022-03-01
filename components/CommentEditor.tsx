@@ -1,5 +1,6 @@
-import { HStack, Stack, Textarea } from "@chakra-ui/react";
 import * as React from "react";
+import { HStack, Stack, Textarea } from "@chakra-ui/react";
+import { constants } from "ethers";
 import Avatar from "@davatar/react";
 import AuthButton from "./AuthButton";
 import { useAccount } from "wagmi";
@@ -21,16 +22,11 @@ const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
       <HStack spacing={3} alignItems="start">
         <Avatar
           size={48}
-          address={
-            accountQuery.data?.address ||
-            "0x0000000000000000000000000000000000000000"
-          }
+          address={accountQuery.data?.address || constants.AddressZero}
         />
         <Textarea
           value={message}
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
+          onChange={(e) => setMessage(e.target.value)}
           placeholder="Write a message.."
           p={3}
           flex={1}
@@ -49,9 +45,7 @@ const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
               message,
               topic,
             })
-            .then(() => {
-              setMessage("");
-            });
+            .then(() => setMessage(""));
         }}
         isLoading={mutation.isLoading}
       >
