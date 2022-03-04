@@ -4,7 +4,7 @@
 
 Today we're going to build together a fullstack decentralized forum that can be used in any dapp.
 
-See the full tutorial here -> https://www.pointer.gg/tutorials/create-a-web3-forum-with-polygon
+See the full tutorial here -> https://www.pointer.gg/tutorials/create-a-web3-forum-with-polygon/1cb8f005-08f4-48a2-9d82-cd963e16f7f1
 
 ### Overview
 
@@ -22,4 +22,4 @@ Here's what we're going to build:
 
 https://user-images.githubusercontent.com/5760059/154543585-74136a91-bac1-4935-8790-c943b71f43df.mov
 
-Visit the tutorial to get started https://www.pointer.gg/tutorials/create-a-web3-forum-with-polygon
+Visit the tutorial to get started https://www.pointer.gg/tutorials/create-a-web3-forum-with-polygon/1cb8f005-08f4-48a2-9d82-cd963e16f7f1
