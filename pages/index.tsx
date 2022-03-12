@@ -9,7 +9,7 @@ import { providers } from "ethers";
 import Comments from "../components/Comments";
 
 // Provider that will be used when no wallet is connected (aka no signer)
-const provider = providers.getDefaultProvider("http://localhost:8545");
+const provider = providers.getDefaultProvider("https://rpc-mumbai.maticvigil.com");
 
 // Create a react-query client
 const queryClient = new QueryClient({
