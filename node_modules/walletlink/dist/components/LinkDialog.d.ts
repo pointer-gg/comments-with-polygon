@@ -1,0 +1,12 @@
+import { FunctionComponent } from "preact";
+export declare const LinkDialog: FunctionComponent<{
+    darkMode: boolean;
+    version: string;
+    sessionId: string;
+    sessionSecret: string;
+    walletLinkUrl: string;
+    isOpen: boolean;
+    isConnected: boolean;
+    isParentConnection: boolean;
+    onCancel: (() => void) | null;
+}>;

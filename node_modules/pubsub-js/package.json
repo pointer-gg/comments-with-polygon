@@ -1,0 +1,45 @@
+{
+  "name": "pubsub-js",
+  "version": "1.9.4",
+  "description": "Dependency free publish/subscribe library",
+  "main": "./src/pubsub.js",
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
+  "scripts": {
+    "coverage": "nyc --reporter=lcov --reporter=text --reporter=json-summary npm test",
+    "prepublishOnly": "jsdoc2md --template ./docs/template.hbs --files ./src/*.js > ./docs/docs.md",
+    "lint": "eslint src/ test/",
+    "test": "mocha",
+    "preversion": "npm test",
+    "version": "changes --commits --footer",
+    "postversion": "git push --follow-tags && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mroderick/PubSubJS.git"
+  },
+  "keywords": [
+    "pub/sub",
+    "pubsub",
+    "publish/subscribe",
+    "publish",
+    "subscribe"
+  ],
+  "author": {
+    "name": "Morgan Roderick",
+    "email": "morgan@roderick.dk",
+    "url": "http://roderick.dk"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@studio/changes": "^2.0.0",
+    "eslint": "4.19.1",
+    "jsdoc-to-markdown": "^5.0.3",
+    "mocha": "7.1.0",
+    "nyc": "15.0.0",
+    "referee": "^1.2.0",
+    "sinon": "9.0.0"
+  }
+}
