@@ -1,8 +1,0 @@
-* text eol=lf
-
-*.png binary
-*.jpg binary
-
-*.min.js -diff
-*.ps -diff
-*.map -diff
