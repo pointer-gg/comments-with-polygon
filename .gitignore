@@ -4,12 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
 
 # testing
 /coverage
 
 # next.js
-/.next/
 /out/
 
 # production
@@ -43,5 +43,4 @@ coverage.json
 typechain
 
 #Hardhat files
-cache
-artifacts
+
