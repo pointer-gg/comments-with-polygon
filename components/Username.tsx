@@ -7,10 +7,10 @@ interface UsernameProps extends TextProps {
   address: string;
 }
 
-const Username: React.FunctionComponent<UsernameProps> = ({
+const Username = ({
   address,
   ...otherProps
-}) => {
+}: UsernameProps) => {
   const [query] = useEnsLookup({ address });
 
   // Show ens name if exists, but show truncated address as fallback

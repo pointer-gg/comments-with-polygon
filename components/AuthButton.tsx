@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 interface AuthButtonProps extends ButtonProps {}
 
-const AuthButton: React.FunctionComponent<AuthButtonProps> = (props) => {
+const AuthButton = (props: AuthButtonProps) => {
   const [connectQuery, connect] = useConnect();
   const [accountQuery] = useAccount();
 
