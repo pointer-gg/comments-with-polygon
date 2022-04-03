@@ -9,7 +9,7 @@ interface CommentsProps {
   topic: string;
 }
 
-const Comments: React.FunctionComponent<CommentsProps> = ({ topic }) => {
+const Comments = ({ topic }: CommentsProps) => {
   const query = useComments({ topic });
 
   useEvents({ topic });

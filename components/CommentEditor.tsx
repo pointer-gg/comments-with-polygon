@@ -10,9 +10,7 @@ interface CommentEditorProps {
   topic: string;
 }
 
-const CommentEditor: React.FunctionComponent<CommentEditorProps> = ({
-  topic,
-}) => {
+const CommentEditor = ({ topic }: CommentEditorProps) => {
   const [message, setMessage] = React.useState("");
   const mutation = useAddComment();
   const [accountQuery] = useAccount();

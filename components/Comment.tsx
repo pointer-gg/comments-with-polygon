@@ -9,7 +9,7 @@ interface CommentProps {
   comment: Comment;
 }
 
-const Comment: React.FunctionComponent<CommentProps> = ({ comment }) => {
+const Comment = ({ comment }: CommentProps) => {
   return (
     <HStack spacing={3} alignItems="start">
       <Avatar size={48} address={comment.creator_address} />
