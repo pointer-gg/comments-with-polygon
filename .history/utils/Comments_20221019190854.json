@@ -1,0 +1,103 @@
+[
+    {
+      "components": [
+        {
+          "internalType": "uint32",
+          "name": "id",
+          "type": "uint32"
+        },
+        {
+          "internalType": "string",
+          "name": "topic",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "creator_address",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "indexed": false,
+      "internalType": "struct Comments.Comment",
+      "name": "comment",
+      "type": "tuple"
+    }
+  ],
+  "name": "CommentAdded",
+  "type": "event"
+},
+{
+  "inputs": [
+    {
+      "internalType": "string",
+      "name": "topic",
+      "type": "string"
+    },
+    {
+      "internalType": "string",
+      "name": "message",
+      "type": "string"
+    }
+  ],
+  "name": "addComment",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+},
+{
+  "inputs": [
+    {
+      "internalType": "string",
+      "name": "topic",
+      "type": "string"
+    }
+  ],
+  "name": "getComments",
+  "outputs": [
+    {
+      "components": [
+        {
+          "internalType": "uint32",
+          "name": "id",
+          "type": "uint32"
+        },
+        {
+          "internalType": "string",
+          "name": "topic",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "creator_address",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "internalType": "struct Comments.Comment[]",
+      "name": "",
+      "type": "tuple[]"
+    }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+}
+]
