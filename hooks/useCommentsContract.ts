@@ -3,7 +3,7 @@ import { useProvider, useSigner } from "wagmi";
 import type { BigNumber } from "ethers";
 // Import our contract ABI (a json representation of our contract's public interface).
 // The hardhat compiler writes this file to artifacts during compilation.
-import CommentsContract from "../backend/artifacts/contracts/Comments.sol/Comments.json";
+//import CommentsContract from "../backend/artifacts/contracts/Comments.sol/Comments.json";
 
 export interface Comment {
   id: string;
